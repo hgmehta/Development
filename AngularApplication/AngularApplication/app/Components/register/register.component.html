@@ -1,0 +1,128 @@
+﻿<h1>User Register</h1><br />
+<div class="container">
+    <form [formGroup]="registerForm"  (ngSubmit)="onSubmit(registerForm)" novalidate>
+        <div class="form-horizontal">
+            <div class="col-md-6 form-line">
+                <div class="form-group">
+                    <label class="control-label col-md-3">FirstName:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" #refName type="text" formControlName="Firstname"/>
+                        <div *ngIf="registerForm.controls.Firstname.errors && (registerForm.controls.Firstname.dirty || registerForm.controls.Firstname.touched)">
+                            <small [hidden]="!registerForm.controls.Firstname.hasError('required')" class="text-danger">
+                                * Please enter your first name
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">MiddleName:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text"formControlName="MiddleName" />
+                        <div *ngIf="registerForm.controls.MiddleName.errors && (registerForm.controls.MiddleName.dirty || registerForm.controls.MiddleName.touched)">
+                            <small [hidden]="!registerForm.controls.MiddleName.hasError('required')" class="text-danger">
+                                * Please enter your middle name
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">LastName:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" formControlName="Lastname" />
+                        <div *ngIf="registerForm.controls.Lastname.errors && (registerForm.controls.Lastname.dirty || registerForm.controls.Lastname.touched)">
+                            <small [hidden]="!registerForm.controls.Lastname.hasError('required')" class="text-danger">
+                                * Please enter your last name
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Gender:</label>
+                    <div class="col-md-9">
+                        <input type="radio" formControlName="Gender" value="true"/>Male
+                        <input type="radio" formControlName="Gender" value="false" />Female
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Birthdate:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="date" formControlName="Birthdate" />
+                        <div *ngIf="registerForm.controls.Birthdate.errors && (registerForm.controls.Birthdate.dirty || registerForm.controls.Birthdate.touched)">
+                            <small [hidden]="!registerForm.controls.Birthdate.hasError('required')" class="text-danger">
+                                * Please select your birthdate
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">City:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text"formControlName="City" />
+                        <div *ngIf="registerForm.controls.City.errors && (registerForm.controls.City.dirty || registerForm.controls.City.touched)">
+                            <small [hidden]="!registerForm.controls.City.hasError('required')" class="text-danger">
+                                * Please enter your city
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="control-label col-md-3">Address:</label>
+                <div class="col-md-9">
+                    <textarea class="form-control" rows="3" cols="40" style="resize:none;" formControlName="Address"ngModel></textarea>
+                    <div *ngIf="registerForm.controls.Address.errors && (registerForm.controls.Address.dirty || registerForm.controls.Address.touched)">
+                        <small [hidden]="!registerForm.controls.Address.hasError('required')" class="text-danger">
+                            * Please enter your address
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="control-label col-md-3">Email:</label>
+                <div class="col-md-9">
+                    <input class="form-control" formControlName="EmailId" [(ngModel)]="_email" type="email"/>
+                    <div *ngIf="registerForm.controls.EmailId.errors && (registerForm.controls.EmailId.dirty || registerForm.controls.EmailId.touched)">
+                        <small [hidden]="!registerForm.controls.EmailId.hasError('required')" class="text-danger">
+                            * Please enter your email
+                        </small>
+                        <small [hidden]="!registerForm.controls.EmailId.hasError('isEmailUnique')" class="text-danger">
+                            * Email id is already registered
+                        </small>
+                        <small [hidden]="!registerForm.controls.EmailId.hasError('pattern')" class="text-danger">
+                            * Please enter valid email address
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="control-label col-md-3">Password:</label>
+                <div class="col-md-9">
+                    <input class="form-control" formControlName="Password" type="password" [(ngModel)]="Password"/>
+                    <div *ngIf="registerForm.controls.Password.errors && (registerForm.controls.Password.dirty || registerForm.controls.Password.touched)">
+                        <small [hidden]="!registerForm.controls.Password.hasError('required')" class="text-danger">
+                            * Please enter password
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="control-label col-md-3">Confirm Password:</label>
+                <div class="col-md-9">
+                    <input class="form-control" validateEqual="password" formControlName="confirmpassword" [(ngModel)]="confirm" type="password"/>
+                    <div *ngIf="(registerForm.controls.confirmpassword.dirty || registerForm.controls.confirmpassword.touched)">
+                        <small [hidden]="(Password == confirm)" class="text-danger">
+                            * password doesn't match
+                        </small>
+                    </div>
+                    <div *ngIf="registerForm.controls.confirmpassword.errors && (registerForm.controls.confirmpassword.dirty || registerForm.controls.confirmpassword.touched)">
+                        <small [hidden]="!registerForm.controls.confirmpassword.hasError('required')" class="text-danger">
+                            * Please conform password
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <button [disabled]="!registerForm.valid" class="btn btn-primary pull-right" type="submit">Submit</button>
+            <button class="btn btn-default pull-right" type="button">Cancel</button>
+        </div>
+    </form>
+</div>

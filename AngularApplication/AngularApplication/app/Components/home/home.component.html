@@ -1,0 +1,161 @@
+﻿<div class='table-responsive'>
+        <div class="alert alert-info" role="alert" *ngIf="indLoading"><img src="../../images/loading.gif" width="32" height="32" /> Loading...</div>
+        <div *ngIf='users && users.length==0' class="alert alert-info" role="alert">No record found!</div>
+        <table class='table table-striped' *ngIf='users && users.length'>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Birthdate</th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{user.Firstname}} {{user.MiddleName}} {{user.Lastname}}</td>
+                    <td>
+                        <div *ngIf="user.Gender">
+                            Male
+                        </div>
+                        <div *ngIf="!user.Gender">
+                            Female
+                        </div>
+                    </td>
+                    <td>{{user.Birthdate | date : 'dd/MM/yyyy'}}</td>
+                    <td>{{user.City}}</td>
+                    <td>{{user.Address}}</td>
+                    <td>{{user.EmailId}}</td>
+                    <td>
+                        <button title="Edit" class="btn btn-primary"  (click)="editUser(user.Id)">Edit</button>|
+                        <button title="Delete" class="btn btn-danger" (click)="deleteUser(user.Id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+    <div *ngIf="msg" role="alert" class="alert alert-info alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        {{msg}}
+    </div>
+<modal #modal>
+    <form novalidate (ngSubmit)="onSubmit(editForm)" [formGroup]="editForm">
+        <modal-header [show-close]="true">
+            <h4 class="modal-title">{{modalTitle}}</h4>
+        </modal-header>
+        <modal-body>
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">Firstname:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" formControlName="Firstname" />
+                        <div *ngIf="editForm.controls.Firstname.errors && (editForm.controls.Firstname.dirty || editForm.controls.Firstname.touched)">
+                            <small [hidden]="!editForm.controls.Firstname.hasError('required')" class="text-danger">
+                                * Please enter your middle name
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">Middlename:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" formControlName="MiddleName" />
+                        <div *ngIf="editForm.controls.MiddleName.errors && (editForm.controls.MiddleName.dirty || editForm.controls.MiddleName.touched)">
+                            <small [hidden]="!editForm.controls.MiddleName.hasError('required')" class="text-danger">
+                                * Please enter your middle name
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">Lastname:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" formControlName="Lastname" />
+                        <div *ngIf="editForm.controls.Lastname.errors && (editForm.controls.Lastname.dirty || editForm.controls.Lastname.touched)">
+                            <small [hidden]="!editForm.controls.Lastname.hasError('required')" class="text-danger">
+                                * Please enter your middle name
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">Gender:</label>
+                    <div class="col-md-9">
+                        <input type="radio" formControlName="Gender" value="true" />Male
+                        <input type="radio" formControlName="Gender" value="false" />Female
+                        <div *ngIf="editForm.controls.Gender.errors && (editForm.controls.MiddleName.dirty || editForm.controls.MiddleName.touched)">
+                            <small [hidden]="!editForm.controls.MiddleName.hasError('required')" class="text-danger">
+                                * Please enter your middle name
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">Birthdate:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="date" formControlName="Birthdate" />
+                        <div *ngIf="editForm.controls.Birthdate.errors && (editForm.controls.Birthdate.dirty || editForm.controls.Birthdate.touched)">
+                            <small [hidden]="!editForm.controls.Birthdate.hasError('required')" class="text-danger">
+                                * Please enter your middle name
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">City:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" formControlName="City" />
+                        <div *ngIf="editForm.controls.City.errors && (editForm.controls.City.dirty || editForm.controls.City.touched)">
+                            <small [hidden]="!editForm.controls.City.hasError('required')" class="text-danger">
+                                * Please enter your middle name
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">Address:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" formControlName="Address" />
+                        <div *ngIf="editForm.controls.Address.errors && (editForm.controls.Address.dirty || editForm.controls.Address.touched)">
+                            <small [hidden]="!editForm.controls.Address.hasError('required')" class="text-danger">
+                                * Please enter your middle name
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">EmailId:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" formControlName="EmailId" />
+                        <div *ngIf="editForm.controls.EmailId.errors && (editForm.controls.EmailId.dirty || editForm.controls.EmailId.touched)">
+                            <small [hidden]="!editForm.controls.EmailId.hasError('required')" class="text-danger">
+                                * Please enter your middle name
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </modal-body>
+        <modal-footer>
+            <div>
+                <a class="btn btn-default" (click)="modal.dismiss()">Cancel</a>
+                <button type="submit" [disabled]="editForm.invalid" class="btn btn-primary">{{modalBtnTitle}}</button>
+            </div>
+        </modal-footer>
+    </form>
+</modal>

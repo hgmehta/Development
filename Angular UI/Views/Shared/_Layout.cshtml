@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    
+    
+    <link href="~/Content/angular-material.min.css" rel="stylesheet" />
+    <link href="~/Content/angular-material.layouts.min.css" rel="stylesheet" />
+    <link href="~/Content/angular-material.layout-attributes.min.css" rel="stylesheet" />
+
+
+
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>
+    <script src="~/Scripts/angular-aria.js"></script>
+    <script src="~/Scripts/angular-material.min.js"></script>
+
+
+    <script src="~/app/main.js"></script>
+    <script src="~/app/Controller/LoginController.js"></script>
+    <script src="~/app/Controller/ProductController.js"></script>
+    <script src="~/app/Controller/OrderHistoryController.js"></script>
+    <script src="~/app/Controller/CartController.js"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div ng-cloak>
+        <md-nav-bar md-no-ink-bar="disableInkBar"
+                    md-selected-nav-item="currentNavItem"
+                    nav-bar-aria-label="navigation links" md-theme="altTheme">
+            <md-nav-item md-nav-click="goto('page1')" name="page1">
+                Page One
+            </md-nav-item>
+            <md-nav-item md-nav-click="goto('page2')" name="page2">
+                Page Two
+            </md-nav-item>
+            <md-nav-item md-nav-click="goto('page3')" name="page3">
+                Page Three
+            </md-nav-item>
+            <!-- these require actual routing with ui-router or ng-route, so they
+            won't work in the demo
+            <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
+            <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
+            You can also add options for the <code>ui-sref-opts</code> attribute.
+            <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
+              Page Six
+            </md-nav-item>
+            -->
+        </md-nav-bar>
+    </div>
+    <div class="container body-content" style="max-width: 100%;margin: 2%;">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

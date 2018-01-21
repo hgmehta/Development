@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+
+
+<div ng-cloak style="margin-top:2%;">
+    <md-content class="md-padding" layout-xs="column" style="background-color:white;" layout="row" layout-align="center">
+        <div flex-xs flex-gt-xs="55" layout="column">
+            <md-card md-theme="'dark-purple'" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Please Register yourself !</span>
+                        <span class="md-subhead">Sign Up</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>First name</label>
+                            <input ng-model="user.firstName">
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Lastname</label>
+                            <input ng-model="theMax">
+                        </md-input-container>
+                    </div>
+
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Username</label>
+                            <input ng-model="user.firstName">
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Email</label>
+                            <input ng-model="theMax">
+                        </md-input-container>
+                    </div>
+
+
+                    <md-input-container class="md-icon-float md-block">
+                        <label>Password</label>
+                        <input ng-model="Email" type="text" required>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block">
+                        <label>Confirm Password</label>
+                        <input ng-model="Email" type="text" required>
+                    </md-input-container>
+
+                    <a>Already have an account? Login Here </a>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button>Register</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </md-content>
+</div>

@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<div ng-controller="LoginController" ng-cloak style="margin-top:5%;">
+    <md-content class="md-padding" layout-xs="column" style="background-color:white;" layout="row" layout-align="center">
+        <div flex-xs flex-gt-xs="55" layout="column">
+            <md-card md-theme="'dark-purple'" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Please Login</span>
+                        <span class="md-subhead">Sign In</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <md-input-container class="md-icon-float md-block">
+                        <label>Email</label>
+                        <input ng-model="Email" type="text" required>
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-block">
+                        <label>Password</label>
+                        <input ng-model="Password" type="text" required>
+                        <a>Forgot Password?</a>
+                    </md-input-container>
+
+                    <a>Don't have an account? Register Here </a>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button>Login &nbsp;<i class="glyphicon glyphicon-log-in"></i></md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </md-content>
+</div>
